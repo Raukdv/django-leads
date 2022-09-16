@@ -1,0 +1,5 @@
+{% include 'panel/_snippets/form.html' with submit_text='Login' submit_form='Login' %}
+
+{% for message in messages %}
+    <h6>{{ message }}</h6>
+{% endfor %}

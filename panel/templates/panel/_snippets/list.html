@@ -1,0 +1,56 @@
+{% extends "panel/base.html" %}
+
+{% load boilerplate djaneiro humanize i18n %}
+
+{% block title %}{{ object_list|queryset_model_name_plural }} {{ block.super }}{% endblock %}
+
+{% block css_header %}
+{{ filter.form.media.css }}
+{% endblock %}
+
+{% block breadcrumb %}{% breadcrumb %}{% endblock %}
+
+{% block page_header %}<h2>{{ object_list|queryset_model_name_plural }}</h2>{% endblock %}
+
+{% block page_actions %}{% action_buttons %}{% endblock %}
+
+{% block content %}
+
+<div class="ibox float-e-margins">
+  {% if filter %}{% include 'panel/_snippets/filter.html' %}{% endif %}
+
+  <div class="ibox-content table-responsive-sm">
+    {% block content_inner %}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">{% trans "name" %}</th>
+          <th scope="col" class="text-right">{% trans "options" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for object in object_list %}
+        <tr>
+          <th scope="row"><a href="{{ object.get_absolute_url }}">{{ object }}</a></th>
+          <td class="text-right">{% action_buttons size='xs' %}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="2" class="text-center text-muted">
+            {% trans "No records." %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endblock %}
+  </div>
+  {% include "panel/_snippets/pagination.html" %}
+</div>
+
+{% block after_pagination %}{% endblock %}
+{% endblock %}
+
+{% block scripts_footer %}
+{{ filter.form.media.js }}
+{% endblock scripts_footer %}

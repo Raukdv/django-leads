@@ -1,0 +1,24 @@
+{% if form.errors %}
+<div class="alert alert-danger alert-dismissible col-12 mx-1" role="alert">
+    
+    <div id="noterror">
+
+        <div class="bg-yellow-100 border-t border-b border-yellow-500 text-yellow-700 px-4 py-3" role="alert" id="noterror">
+            <p class="font-bold">Informational Message:</p>
+            {% for key, value in form.errors.items %}
+            <strong class="font-bold">{% if key == "__all__" %}{{ key|slice:'14:1000' }}{% else %}{{ key }} {% endif %}</strong><p class="text-sm">{{ value }}</p>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    const noterror = document.getElementById("noterror") 
+    setTimeout(() => {
+      noterror.remove()
+    }, 8 * 1000)
+</script>
+
+{% endif %}

@@ -1,0 +1,28 @@
+{% extends "panel/_snippets/list.html" %}
+
+{% load djaneiro i18n %}
+
+{% block content_inner %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">{% trans "client" %}</th>
+      <th scope="col">{% trans "address" %}</th>
+      <th scope="col">{% trans "city" %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+    <tr>
+      <th scope="row"><a href="{% url 'panel:lead:lead_detail' object.id %}">{{ object.client }}</a></th>
+      <td>{{ object.address }}</td>
+      <td>{{ object.city }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5" class="text-center text-muted">{% trans "No records" %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content_inner %}

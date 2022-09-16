@@ -1,0 +1,19 @@
+{% load bootstrap4 i18n %}
+
+<div class="ibox">
+  <div class="ibox-content pb-1">
+    <form class="form-inline" action="" method="GET" novalidate>
+      {% bootstrap_form filter.form layout='inline' size="sm" show_label=False form_group_class="form-group mr-2 mb-2" bound_css_class="" error_css_class="" %}
+      <div class="d-block d-md-inline mb-1">
+        <button type="submit" class="btn btn-primary btn-sm">
+          <i class="fas fa-search"></i>
+          <span class="d-inline d-md-none">{% trans "Filter" %}</span>
+        </button>
+        <a href="{{ request.path }}" class="btn btn-link btn-sm">
+          <i class="fas fa-eraser"></i>
+          <span class="d-inline d-md-none">{% trans "Clean" %}</span>
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

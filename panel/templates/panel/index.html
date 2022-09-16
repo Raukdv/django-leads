@@ -1,0 +1,39 @@
+{% extends 'panel/base.html' %}
+
+{% block css_header %}
+{{ filter.form.media.css }}
+{% endblock %}
+
+{% block title%}
+Inicio
+{% endblock%}
+
+{% block content %}
+<div class="col">
+	{% if filter %}{% include 'panel/_snippets/filter.html' %}{% endif %}
+<div class="row">
+	{% for lead in leads_list %}
+	{% if lead.taken == False and lead.price != 0 %}
+	<div class="col-sm-6 mt-2">
+	  <div class="card">
+		<div class="card-body">
+		  <h5 class="card-title">Client: {{lead.client}}</h5>
+		  <p class="card-text">Zipcode: {{lead.zipcode}}</p>
+		  <p class="card-text">Category: {{lead.category}}</p>
+		  <p class="card-text">Price: {{lead.price}} ReyCoins</p>
+		  <a href="{% url 'panel:lead:lead_buy' lead.pk %}" class="btn btn-success">Purchase</a>
+		</div>
+	  </div>
+	</div>
+	{% endif %}
+	{% endfor %}
+  </div>
+  {% include "panel/_snippets/pagination.html" %}
+</div>
+{% endblock %}
+
+{% block after_pagination %}{% endblock %}
+
+{% block scripts_footer %}
+{{ filter.form.media.js }}
+{% endblock scripts_footer %}

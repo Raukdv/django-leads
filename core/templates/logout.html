@@ -1,0 +1,7 @@
+{% extends 'panel/base.html' %}
+{% load i18n %}
+
+{% block content %} 
+    <h5>{% translate "Thanks for spending some quality time with the web site today." %}</h5>
+    <a href="{% url 'panel:site:login' %}">Login again</a>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "panel/base.html" %}
+
+{% load i18n static %}
+
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    {{ object.client|default_if_none:'' }}
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ object.category }}</li>
+    <li class="list-group-item">{{ object.city }} {{ object.state }}</li>
+    <li class="list-group-item">{{ object.phoneNumber }}</li>
+    <li class="list-group-item">{{ object.zipcode }}</li>
+    <li class="list-group-item"> <a href="https://www.google.com/maps/place/{{ object.address }},{{ object.city }},+{{ object.state }}+{{ object.zipcode }},+EE.+UU" class="card-link">Check Map</a></li>
+  </ul>
+</div>
+
+{% endblock content %}
